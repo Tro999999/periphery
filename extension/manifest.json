@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Periphery 環繞延伸",
+  "short_name": "Periphery",
+  "version": "1.0.0",
+  "description": "看影片時把主螢幕畫面延伸到左右兩側螢幕，營造類 ScreenX 的三螢幕環繞沉浸感。",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "system.display",
+    "contentSettings"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Periphery 環繞延伸",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "toggle-surround": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "開啟 / 關閉環繞模式"
+    }
+  },
+  "optional_host_permissions": [
+    "<all_urls>"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

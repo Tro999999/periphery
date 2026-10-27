@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>Periphery 本機播放器</title>
+<link rel="icon" href="icons/icon32.png">
+<style>
+  :root {
+    --bg: #0d0c0f; --text: #efebe4; --muted: #9b968e; --accent: #e8893a; --line: rgba(255,255,255,.1);
+    --font: system-ui, -apple-system, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font: 14px/1.5 var(--font); }
+  body { display: grid; place-items: center; overflow: hidden; }
+
+  #drop {
+    width: min(560px, calc(100vw - 32px)); padding: 48px 32px; text-align: center;
+    border: 1.5px dashed rgba(255,255,255,.18); border-radius: 20px;
+    background: radial-gradient(120% 90% at 50% 0%, rgba(232,137,58,.10), transparent 60%);
+    transition: border-color .2s, background .2s;
+  }
+  #drop.over { border-color: var(--accent); background: radial-gradient(120% 90% at 50% 0%, rgba(232,137,58,.22), transparent 70%); }
+  #drop h1 { margin: 14px 0 6px; font-size: 20px; font-weight: 650; }
+  #drop p { margin: 0 0 22px; color: var(--muted); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 18px;
+    border-radius: 10px; border: 0; cursor: pointer; font: 600 14px var(--font);
+    background: var(--accent); color: #1b130b;
+  }
+  .btn.ghost { background: rgba(255,255,255,.08); color: var(--text); border: 1px solid var(--line); }
+  .btn.on { background: transparent; color: #ffd9a8; box-shadow: inset 0 0 0 1.5px rgba(232,137,58,.7); }
+
+  video { display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; object-fit: contain; background: #000; }
+  body.has-video #drop { display: none; }
+  body.has-video video { display: block; }
+
+  #bar {
+    position: fixed; top: 0; left: 0; right: 0; display: none; align-items: center; gap: 10px;
+    padding: 14px 18px; background: linear-gradient(rgba(0,0,0,.75), transparent);
+    transition: opacity .3s; z-index: 2;
+  }
+  body.has-video #bar { display: flex; }
+  body.idle #bar { opacity: 0; pointer-events: none; }
+  body.idle { cursor: none; }
+  #name { flex: 1; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #msg {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); z-index: 3;
+    background: rgba(18,18,20,.9); border: 1px solid var(--line); border-radius: 12px; padding: 10px 16px;
+    opacity: 0; transition: opacity .25s; pointer-events: none; white-space: pre-line; text-align: center;
+  }
+  #msg.on { opacity: 1; }
+  kbd { font: 12px ui-monospace, Consolas, monospace; border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; color: var(--muted); }
+  .keys { margin-top: 18px; color: var(--muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+  <div id="drop">
+    <img src="icons/icon128.png" width="64" height="64" alt="">
+    <h1>拖曳影片檔到這裡</h1>
+    <p>本機影片在這裡播放可以使用完整的環繞效果（含鏡頭跟隨）。</p>
+    <label class="btn">選擇影片檔<input id="file" type="file" accept="video/*,.mkv" hidden></label>
+    <div class="keys"><kbd>S</kbd> 開關環繞　<kbd>F</kbd> 全螢幕　<kbd>空白鍵</kbd> 播放 / 暫停</div>
+  </div>
+  <video id="video" controls></video>
+  <div id="bar">
+    <span id="name"></span>
+    <button id="surround" class="btn">開啟環繞</button>
+    <button id="change" class="btn ghost">更換影片</button>
+  </div>
+  <div id="msg"></div>
+<script src="settings.js"></script>
+<script src="engine.js"></script>
+<script src="player.js"></script>
+</body>
+</html>

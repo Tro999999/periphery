@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>Periphery</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/icon48.png" alt="" width="28" height="28">
+    <div class="brand">
+      <div class="name">Periphery</div>
+      <div class="sub">環繞延伸</div>
+    </div>
+    <span class="kbd" title="快捷鍵（可在 chrome://extensions/shortcuts 修改）">Alt+Shift+S</span>
+  </header>
+
+  <section class="stage">
+    <div class="screens" id="screens">
+      <div class="scr side" data-side="left"></div>
+      <div class="scr main"></div>
+      <div class="scr side" data-side="right"></div>
+    </div>
+    <button id="toggle" class="toggle" disabled>讀取中…</button>
+    <p id="status" class="status">&nbsp;</p>
+  </section>
+
+  <section class="group">
+    <div class="presets" id="presets"></div>
+  </section>
+
+  <section class="group" id="sliders"></section>
+
+  <footer>
+    <button id="reset" class="ghost" title="把所有設定還原成預設值">還原預設</button>
+    <button id="options" class="ghost primary-ghost">全部設定…</button>
+    <button id="player" class="ghost" title="播放電腦裡的影片檔">本機播放器</button>
+  </footer>
+<script src="settings.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Periphery 設定</title>
+<link rel="icon" href="icons/icon32.png">
+<link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <img src="icons/icon48.png" width="32" height="32" alt="">
+      <div class="brand">
+        <div class="name">Periphery 設定</div>
+        <div class="sub">所有調整都會即時套用到正在播放的環繞畫面</div>
+      </div>
+      <button id="resetAll" class="btn">全部還原預設</button>
+    </div>
+  </header>
+
+  <section class="preview-wrap">
+    <div class="wrap">
+      <div class="preview" id="preview">
+        <canvas class="pv-side" id="pvLeft"></canvas>
+        <div class="pv-main"><video id="pvVideo" src="demo.webm" muted loop playsinline></video></div>
+        <canvas class="pv-side" id="pvRight"></canvas>
+      </div>
+      <div class="preview-bar">
+        <button id="pvPlay" class="chip">暫停</button>
+        <label class="chip file">換成自己的影片<input id="pvFile" type="file" accept="video/*" hidden></label>
+        <span class="pv-note" id="pvNote">即時預覽（示範影片）</span>
+      </div>
+      <div class="presets">
+        <span class="label">風格</span>
+        <div id="presetList" class="preset-list"></div>
+        <button id="saveCustom" class="chip ghost">把目前設定存成「我的設定」</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap" id="groups"></main>
+
+  <footer class="wrap foot">
+    <p>快捷鍵：<span id="shortcut">Alt+Shift+S</span>（可在 <a href="#" id="shortcutsLink">chrome://extensions/shortcuts</a> 修改）・在側螢幕按 Esc 也可以關閉。</p>
+    <p>小技巧：在滑桿上<b>連點兩下</b>可以把那一項還原成預設值。</p>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+<script src="settings.js"></script>
+<script src="engine.js"></script>
+<script src="options.js"></script>
+</body>
+</html>
